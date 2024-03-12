@@ -24,7 +24,7 @@ const Connection = () => {
                 <section id="categories" className="flex space-x-8 justify-center my-5">
                     <section>
                         <button onClick={() => setTabName('following')} className="w-30 h-9 px-2 rounded-lg"
-                            style={(tabName === 'following' ? {color : 'red'} : {color : "black"})}
+                            style={(tabName === 'following' ? {color : 'rgb(255, 58, 98)'} : {color : "black"})}
                         >
                             <span style={{fontSize : '22px'}} className="font-inter text-xl">Following</span>
                         </button>
@@ -32,18 +32,19 @@ const Connection = () => {
 
                     <section>
                         <button onClick={() => setTabName('follower')} className="w-30 h-9 px-2 rounded-lg"
-                            style={(tabName === 'following' ? {color : 'black'} : {color : "red"})}
+                            style={(tabName === 'following' ? {color : 'black'} : {color : "rgb(255, 58, 98)"})}
                         >
                             <span style={{fontSize : '22px'}} className="font-inter text-xl">Followers</span>
                         </button>
                     </section>
                 </section>
-                {
-                    (tabName === 'following' ? <Following/> : <Follower/>)
-                }
-
-
+                <div class='flex flex-col items-center justify-center min-h-screen p-16 bg-slate-100'>
+                    {(tabName === 'following' ? <Following/> : <Follower/>)}
+                </div>
             </main>
+
+
+            
 
             <RightSide/>
         </>
