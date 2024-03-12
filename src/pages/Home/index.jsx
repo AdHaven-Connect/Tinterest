@@ -13,7 +13,7 @@ const Home = () => {
             <Aside/>
             <main className="container mt-6">
                 <TopPinBar/>
-            <hr className="mt-7"/>
+                <hr className="mt-7"/>
                 <PostCard/>
                 <PostCard/>
             </main>

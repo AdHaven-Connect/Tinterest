@@ -11,6 +11,8 @@ function App() {
   const Account = lazy(() => import("./pages/Account"));
   const People = lazy(() => import("./pages/People"));
   const Topics = lazy(() => import("./pages/Topics"));
+
+  const Post = lazy(() => import("./pages/Post"));
   return (
     <Router>
       <Suspense fallback={<Loader/>} >
@@ -22,6 +24,7 @@ function App() {
           <Route path="/Account" element={<Account/>} />
           <Route path="/people" element={<People/>} />
           <Route path="/topics" element={<Topics/>} />
+          <Route path="/post" element={<Post/>} />
         </Routes>
       </Suspense>
     </Router>
