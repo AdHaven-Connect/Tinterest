@@ -7,6 +7,10 @@ function App() {
   const Home = lazy(() => import("./pages/Home"));
   const Connection = lazy(() => import("./pages/Connection"));
   const Chat = lazy(() => import("./pages/Chat"));
+  const Profile = lazy(() => import("./pages/Profile"));
+  const Account = lazy(() => import("./pages/Account"));
+  const People = lazy(() => import("./pages/People"));
+  const Topics = lazy(() => import("./pages/Topics"));
   return (
     <Router>
       <Suspense fallback={<Loader/>} >
@@ -14,6 +18,10 @@ function App() {
           <Route path="/" element={<Home/>} />
           <Route path="/connections" element={<Connection/>} />
           <Route path="/chat" element={<Chat/>} />
+          <Route path="/profile" element={<Profile/>} />
+          <Route path="/Account" element={<Account/>} />
+          <Route path="/people" element={<People/>} />
+          <Route path="/topics" element={<Topics/>} />
         </Routes>
       </Suspense>
     </Router>
