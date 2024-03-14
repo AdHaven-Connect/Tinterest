@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 
 
 const PostComment = () => {
@@ -7,7 +8,7 @@ const PostComment = () => {
                 <img src="https://flowbite.com/application-ui/demo/images/users/bonnie-green.png" alt="User Avatar" 
                     className="w-10 h-10 rounded-full" />
                 <div>
-                    <p className="text-gray-800 font-medium">Jane Smith</p>
+                    <p className="text-gray-800 font-medium"><Link to="profile">Jane Smith</Link></p>
                     <p className="text-gray-500 text-sm">Lovely shot! 📸</p>
                 </div>
             </div>

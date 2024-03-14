@@ -20,7 +20,7 @@ const PostCard = () => {
                     <section className="flex justify-between mt-5">
                         <section className="flex items-center">
                             <img src="/src/assets/images/mini-logo.svg" alt="mini-logo" />
-                            <span className="text-grey font-inter text-xs">@ivanov.v</span>
+                            <span className="text-grey font-inter text-xs"><Link to="/profile">@ivanov.v</Link></span>
                         </section>
                         <section className="flex space-x-3">
                             <button>
