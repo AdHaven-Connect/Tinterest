@@ -1,26 +1,21 @@
 import { Link } from "react-router-dom"
 
 
-const PostCard = () => {
+const PostCard = ({post}) => {
     return (
         <section id="category" className="flex justify-center mt-6">
             <article className="w-[625px] h-[600px] ">
 
-                <Link to="/post">
-                    <img className="mb-6" src="/src/assets/images/catboi 1.svg" alt="" />
+                <Link to={"/post/" + post.id}>
+                    <img className="mb-6" src={post.post_image} alt="" />
                 </Link> 
                 <section className="mx-4">
-                    <Link to="/post" className=" font-inter text-2xl font-semibold">This cat is so beautiful</Link>
-                    <p className="mt-4 font-inter text-base w-[486px]">
-                        I am dumb piece of shit help god  lets gooooo I am dumb piece
-                        of shit help god lets gooooo I am dumb piece  of shit
-                        help god lets gooooo I am dumb piece of shit help god lets
-                        gooooo I am dumb piece of shit help god lets gooooo
-                    </p>
+                    <Link to={"/post/" + post.id } className=" font-inter text-2xl font-semibold">{post.post_title}</Link>
+                    <p className="mt-4 font-inter text-base w-[486px]">{post.post_content}</p>
                     <section className="flex justify-between mt-5">
                         <section className="flex items-center">
-                            <img src="/src/assets/images/mini-logo.svg" alt="mini-logo" />
-                            <span className="text-grey font-inter text-xs"><Link to="/profile">@ivanov.v</Link></span>
+                            <span className="text-grey font-semibold font text-xs"><Link to={"/profile/" + post.author}>{post.author.name}</Link></span>
+                            {/* <span className="text-grey font-inter font text-xs">{post.created_on}</span> */}
                         </section>
                         <section className="flex space-x-3">
                             <button>
@@ -35,9 +30,9 @@ const PostCard = () => {
                                         </clipPath>
                                     </defs>
                                 </svg>
-
+                                {post.likes}
                             </button>
-                            <Link to="/post">
+                            <Link to={"/post/" + post.id }>
                                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <rect width="32" height="32" rx="8" fill="#EDF2F7" />
                                     <g clipPath="url(#clip0_28_306)">
@@ -51,8 +46,7 @@ const PostCard = () => {
                                         </clipPath>
                                     </defs>
                                 </svg>
-
-
+                                {post.comments}
                             </Link>
                         </section>
                     </section>

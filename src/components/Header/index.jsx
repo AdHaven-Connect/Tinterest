@@ -1,6 +1,15 @@
+import { useState } from "react";
+import PostUpload from "@/components/PostUpload";
+
 const Header = () => {
+
+    const [showModal, setShowModal] = useState(false);
+
+
+
     return (
         <header className="container mt-5">
+
             <nav className="flex items-center justify-between max-w-[1220px] min-h-[50px]">
                 <section className="flex gap-6 w-60 items-center">
                     <a href="" className="">
@@ -62,7 +71,7 @@ const Header = () => {
                             </defs>
                         </svg>
                     </button>
-                    <button>
+                    <button onClick={() => setShowModal(true)}>
                         <svg width="43" height="43" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect width="43" height="43" rx="12" fill="#EDF2F7" />
                             <g clipPath="url(#clip0_28_252)">
@@ -83,6 +92,7 @@ const Header = () => {
                     </button>
                 </section>
             </nav>
+            <PostUpload showModal={showModal} setShowModal={setShowModal}/>
         </header>
     )
 }

@@ -24,7 +24,7 @@ function App() {
           <Route path="/Account" element={<Account/>} />
           <Route path="/people" element={<People/>} />
           <Route path="/topics" element={<Topics/>} />
-          <Route path="/post" element={<Post/>} />
+          <Route path="/post/:post_id" element={<Post/>} />
         </Routes>
       </Suspense>
     </Router>

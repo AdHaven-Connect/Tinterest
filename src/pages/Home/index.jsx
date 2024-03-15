@@ -5,7 +5,7 @@ import TopPinBar from "../../components/TopPinBar"
 import RightSide from "../../components/RighMenu";
 import { useState, useEffect } from "react";
 
-// import API_BASE_URL from "../../constants";
+import {API_BASE_URL} from "/src/constants.js";
 
 const Home = () => {
 
@@ -18,19 +18,17 @@ const Home = () => {
 
 
     const load_user_feed_posts = async () => {
-        const req = await fetch("http://api.tinterest.ru" + "/feed/", {
+        const req = await fetch(API_BASE_URL + "/api/feed/", {
             method : 'GET',
             headers : {
                 "Authorization" : "Token " + localStorage.getItem("token"),
                 "Content-Type" : "application/json",
-                "redirect" : "follow"
             }
         });
 
         if(req.ok && req.status === 200){
             const res = await req.json();
             setFeedPosts(res);
-            console.log(feedPosts)
         }else{
             alert("ERROR!!!");
         }
@@ -44,8 +42,8 @@ const Home = () => {
             <main className="container mt-6">
                 <TopPinBar/>
                 <hr className="mt-7"/>
-                <PostCard/>
-                <PostCard/>
+                
+                {feedPosts.map((post, index) => <PostCard key={index} post={post.post} />)}
             </main>
 
             <RightSide/>
