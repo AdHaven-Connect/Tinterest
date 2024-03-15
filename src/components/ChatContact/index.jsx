@@ -1,11 +1,11 @@
 
-const ChatContact = ({chat_profile}) => {
+const ChatContact = ({select_chat_profile_area, chat_profile}) => {
 
     return (
-        <button id={chat_profile.id}
+        <button id={chat_profile.id} onClick={() => select_chat_profile_area(chat_profile.id)}
             className="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2">
             <div className="flex items-center justify-center h-8 w-8 bg-indigo-200 rounded-full">
-                <img src={"https://cdn.tinterest.ru/" + chat_profile.other_person_name } alt="DP" />
+                <img src={"https://cdn.tinterest.ru/" + chat_profile.other_person_profile_picture } alt="DP" />
             </div>
             <div className="ml-2 text-sm">
                 <span className="font-semibold">{ chat_profile.other_person_name } </span>

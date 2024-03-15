@@ -1,4 +1,4 @@
-const TextMessage = ({showSide}) => {
+const TextMessage = ({showSide, message}) => {
     if(showSide === "left"){
 
         return (
@@ -12,7 +12,7 @@ const TextMessage = ({showSide}) => {
                     <div
                         className="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl"
                     >
-                        <div>Hey How are you today?</div>
+                        <div>{message.message}</div>
                     </div>
                 </div>
             </div>
@@ -29,7 +29,7 @@ const TextMessage = ({showSide}) => {
                     <div
                         className="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl"
                     >
-                        <div>I'm ok what about you?</div>
+                        <div>{message.message}</div>
                     </div>
                 </div>
             </div>

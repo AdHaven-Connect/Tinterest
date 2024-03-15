@@ -1,4 +1,4 @@
-const ImageMessage = ({showSide}) => {
+const ImageMessage = ({showSide, message}) => {
 
     if(showSide === "left"){
 
@@ -13,7 +13,7 @@ const ImageMessage = ({showSide}) => {
                     <div
                         className="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl"
                     >
-                        <img src="http://localhost:5173/src/assets/images/catboi%201.svg" alt="" className="py-2"/>
+                        <img src={message.image} alt="" className="py-2"/>
                     </div>
                 </div>
             </div>
@@ -30,7 +30,7 @@ const ImageMessage = ({showSide}) => {
                     <div
                         className="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl"
                     >
-                        <img src="http://localhost:5173/src/assets/images/catboi%201.svg" alt="" className="py-2"/>
+                        <img src={message.image} alt="" className="py-2"/>
                     </div>
                 </div>
             </div>

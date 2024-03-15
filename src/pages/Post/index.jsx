@@ -13,6 +13,10 @@ const Post = () => {
     const [post, setPost] = useState(null);
     const [comments, setComments] = useState([]);
 
+    const [postLike, setPostLike] = useState(false);
+    const [increment, setIncrement] = useState(0);
+
+
 
     useEffect(() => {
         load_post();
@@ -77,8 +81,33 @@ const Post = () => {
         if(req.ok && req.status === 200){
             const res = await req.json();
             setComments([...comments, res]);
+            document.getElementById("post_reply").value = '';
         }else{
             alert("ERROR!!!");
+        }
+    }
+
+
+
+    const likeUnlikePost = async (post_id) => {
+        const req = await fetch(API_BASE_URL + "/api/posts/" + post_id + "/like/" , {
+            method : "POST",
+            headers : {
+                "Authorization" : "Token " + localStorage.getItem("token"),
+                "Content-Type" : "application/json",
+            }
+        });
+
+        if(req.ok && req.status === 200){
+            const res = await req.json();
+
+            if(res.detail == "added") {
+                setPostLike(true);
+                setIncrement(1);
+            }else{
+                setPostLike(false);
+                setIncrement(-1);
+            }
         }
     }
 
@@ -117,16 +146,19 @@ const Post = () => {
                                 </div>
 
                                 <div className="mb-4">
-                                    <img src={post.post_image} alt="Post Image" className="w-full h-64 object-cover rounded-md" />
+                                    {
+                                        post.post_image && <img src={post.post_image} alt="Post Image" className="w-full h-64 object-cover rounded-md" />
+                                    }
                                 </div>
 
                                 <div className="flex items-center justify-between text-gray-500">
                                     <div className="flex items-center space-x-2">
-                                        <button className="flex justify-center items-center gap-2 px-2 hover:bg-gray-50 rounded-full p-1">
-                                            <svg className="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <button onClick={() => likeUnlikePost(post.id)} 
+                                            className="flex justify-center items-center gap-2 px-2 hover:bg-gray-50 rounded-full p-1">
+                                            <svg fill={postLike ? "orange" : "current"} className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                                 <path d="M12 21.35l-1.45-1.32C6.11 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-4.11 6.86-8.55 11.54L12 21.35z" />
                                             </svg>
-                                            <span>{post.likes} Likes</span>
+                                            <span>{post.likes + 1 < 0 ? 0 : post.likes + increment} Likes</span>
                                         </button>
                                     </div>
                                     <button className="flex justify-center items-center gap-2 px-2 hover:bg-gray-50 rounded-full p-1">
@@ -153,17 +185,16 @@ const Post = () => {
                                 </div>
 
 
-                                <div className="space-x-1" style={{bottom : '0px', position : 'fixed', backgroundColor : 'pink',
-                                    padding : '10px', borderRadius : '15px', display: 'flex'
-                                }}>
+                                <div className="flex justify-center w-1/3 space-x-2 bottom-0 fixed bg-yellow-200 bg-opacity-[0.9] px-4 py-2"
+                                >
                                     <input
                                         style={{ height : '50px'}}
                                         id="post_reply"
                                         placeholder="Reply..."
                                         type="text"
-                                        className="flex w-80 border rounded focus:outline-none focus:border-indigo-300 pl-4"
+                                        className="flex w-full rounded focus:outline-none focus:border-yellow-300 pl-4"
                                     />
-                                    <button onClick={() => post_comment()} style={{backgroundColor : 'violet',}} className="text-white rounded font-semibold px-3">Comment</button>
+                                    <button onClick={() => post_comment()}className="text-dark bg-yellow-400 rounded font-semibold px-3">Comment</button>
                                 </div>
 
                             </div>

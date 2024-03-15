@@ -5,7 +5,7 @@ const Aside = () => {
         <aside style={{position : 'fixed'}} className="ml-28 float-left mt-7">
             <section className="flex flex-col py-14 px-9 space-y-4">
 
-                <Link to="/" className="group flex items-center justify-between w-[210px]">
+                <Link to="/" className="group hover:text-yellow-300 flex items-center justify-between w-[210px]">
                     <span className="font-inter font-medium text-xl group-focus:text-cloud">Главная</span>
                     <svg className="group-focus:stroke-cloud" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clipPath="url(#clip0_28_401)">
@@ -21,7 +21,7 @@ const Aside = () => {
                     </svg>
                 </Link>
 
-                <Link to="/topics" className="group flex items-center justify-between w-[210px]">
+                <Link to="/topics" className="hover:text-yellow-300 group flex items-center hover:text-yellow-300 justify-between w-[210px]">
                     <span className="font-inter font-medium text-xl group-focus:text-cloud">Темы</span>
                     <svg className="group-focus:stroke-cloud" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clipPath="url(#clip0_28_401)">
@@ -37,7 +37,7 @@ const Aside = () => {
                     </svg>
                 </Link>
 
-                <Link to="/people" className="group flex items-center justify-between w-[210px]">
+                <Link to="/people" className="hover:text-yellow-300 group flex items-center justify-between w-[210px]">
                     <span className="font-inter font-medium text-xl group-focus:text-cloud">Люди</span>
                     <svg className="group-focus:stroke-cloud" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clipPath="url(#clip0_28_401)">
@@ -55,7 +55,7 @@ const Aside = () => {
 
 
 
-                <Link to="/chat" className="group flex items-center justify-between w-[210px]">
+                <Link to="/chat" className="hover:text-yellow-300 group flex items-center justify-between w-[210px]">
                     <span className="font-inter font-medium text-xl group-focus:text-cloud">Сообщения</span>
                     <svg className="group-focus:stroke-cloud" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clipPath="url(#clip0_28_401)">
@@ -71,7 +71,7 @@ const Aside = () => {
                     </svg>
                 </Link>
 
-                <Link to="/connections" className="group flex items-center justify-between w-[210px]">
+                <Link to="/connections" className="hover:text-yellow-300 group flex items-center justify-between w-[210px]">
                     <span className="font-inter font-medium text-xl group-focus:text-cloud">Соединения</span>
                     <svg className="group-focus:stroke-cloud" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clipPath="url(#clip0_28_401)">

@@ -13,6 +13,23 @@ const Home = () => {
      
 
     useEffect(() => {
+
+        if(localStorage.getItem('token') == undefined || localStorage.getItem("profile_id") == undefined){
+            window.location.href = "/login";
+            return;
+        }
+
+
+        if(localStorage.getItem('token') == "" || localStorage.getItem("profile_id") == ""){
+            window.location.href = "/login";
+            return;
+        }
+
+        if(localStorage.getItem('token') == null || localStorage.getItem("profile_id") == null){
+            window.location.href = "/login";
+            return;
+        }
+
         load_user_feed_posts();
     }, [])
 

@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import {API_BASE_URL} from '/src/constants.js';
 import ChatContact from "@/components/ChatContact";
 
-const ContactArea = () => {
+const ContactArea = ({select_chat_profile_area}) => {
 
     const [chatProfiles, setChatProfiles] = useState([]);
 
-    const load_chat_porfiles = async () => {
+    const load_chat_profiles = async () => {
         const req = await fetch(API_BASE_URL + "/chat/", {
             method : 'GET',
             headers : {
@@ -25,7 +25,7 @@ const ContactArea = () => {
     }
 
     useEffect(() => {
-        load_chat_porfiles();
+        load_chat_profiles();
     }, [])
 
 
@@ -38,7 +38,7 @@ const ContactArea = () => {
                 </div>
 
                 <div className="flex flex-col space-y-1 mt-4 -mx-2 overflow-y-auto">
-                    { chatProfiles.map((chat_profile, index) => <ChatContact key={index} chat_profile={chat_profile}/>) } 
+                    { chatProfiles.map((chat_profile, index) => <ChatContact key={index} select_chat_profile_area={select_chat_profile_area} chat_profile={chat_profile}/>) } 
                 </div>
 
             </div>

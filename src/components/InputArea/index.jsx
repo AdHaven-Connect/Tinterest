@@ -1,10 +1,62 @@
-const InputArea = () => {
+import {API_BASE_URL} from '/src/constants.js';
+
+const InputArea = ({match_id, websocket, update_chat_messages}) => {
+
+
+    const sent_new_text_message = () => {
+        const chat_message_input_text = document.getElementById("chat_message_input_text").value;
+        if(chat_message_input_text == undefined || chat_message_input_text == null || chat_message_input_text == ''){
+            return
+        }
+        websocket.send(JSON.stringify({
+            "sender" : localStorage.getItem('profile_id'),
+            "message" : chat_message_input_text
+        }));
+        document.getElementById("chat_message_input_text").value = '';
+    }
+
+
+
+    const upload_image_chat = async () => {
+
+        const file_input = document.getElementById("chat_file_upload_button").files;
+
+        if(file_input[0] == null || file_input[0] == undefined) {
+            return;
+        }
+
+        const imageData = new FormData();
+        imageData.append('image', file_input[0]);
+
+        const uploadImage = await fetch(API_BASE_URL + `/chat/${match_id}/upload/image/`, {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Token ' + localStorage.getItem('token'),
+            },
+            body: imageData
+        });
+        
+        if (uploadImage.ok && uploadImage.status === 200) {
+            const chatImg = await uploadImage.json();
+            websocket.send(JSON.stringify({
+                "image" : chatImg.image,
+                "sender" : chatImg.sender,
+                "message_id" : chatImg.message_id
+            }));
+
+        } else {
+            console.log("Failed to upload photo");
+            return;
+        } 
+    }
+
+
     return (
         <div
             className="flex flex-row items-center h-16 rounded-xl bg-white w-full px-4"
         >
             <div>
-                <label for="chat_file_upload_button"
+                <label htmlFor="chat_file_upload_button"
                     className="flex items-center justify-center cursor-pointer text-gray-400 hover:text-gray-600"
                 >
                     <svg
@@ -23,7 +75,7 @@ const InputArea = () => {
                     </svg>
                 </label>
 
-                <input type="file" name="chat_file_upload_button" id="chat_file_upload_button" hidden/>
+                <input type="file" onChange={() => upload_image_chat()} name="chat_file_upload_button" accept='imaage' id="chat_file_upload_button" hidden/>
 
             </div>
             <div className="flex-grow ml-4">
@@ -37,7 +89,7 @@ const InputArea = () => {
                 </div>
             </div>
             <div className="ml-4">
-                <button
+                <button onClick={() => sent_new_text_message()}
                     className="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-1 flex-shrink-0"
                 >
                     <span>Send</span>

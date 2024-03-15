@@ -13,14 +13,19 @@ function App() {
   const Topics = lazy(() => import("./pages/Topics"));
 
   const Post = lazy(() => import("./pages/Post"));
+  const Login = lazy(() => import("./pages/Login"));
+  const Register = lazy(() => import("./pages/Register"));
+
   return (
     <Router>
       <Suspense fallback={<Loader/>} >
         <Routes>
           <Route path="/" element={<Home/>} />
+          <Route path="/login" element={<Login/>} />
+          <Route path="/register" element={<Register/>} />
           <Route path="/connections" element={<Connection/>} />
           <Route path="/chat" element={<Chat/>} />
-          <Route path="/profile" element={<Profile/>} />
+          <Route path="/profile/:profile_id" element={<Profile/>} />
           <Route path="/Account" element={<Account/>} />
           <Route path="/people" element={<People/>} />
           <Route path="/topics" element={<Topics/>} />

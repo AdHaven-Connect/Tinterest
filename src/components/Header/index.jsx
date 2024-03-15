@@ -1,10 +1,12 @@
 import { useState } from "react";
 import PostUpload from "@/components/PostUpload";
+import Notification from "@/components/Notification";
+
 
 const Header = () => {
 
     const [showModal, setShowModal] = useState(false);
-
+    const [showNotification, setShowNotification] = useState(false);
 
 
     return (
@@ -44,9 +46,9 @@ const Header = () => {
                     </svg>
                     <input className="w-[760px] mx-5 px-3 py-2 placeholder-grey text-black rounded-2xl w-[800px] mx-11" id="search" type="text" placeholder="Type for searching..." />
                 </section>
-                <section className="flex items-center gap-3">
+                <section className="flex items-center gap-3" onClick={() => setShowNotification(!showNotification)}>
                     <button>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="24" height="24" viewBox="0 0 24 24"  fill={showNotification ? "yellow" : "none"} xmlns="http://www.w3.org/2000/svg">
                             <g clipPath="url(#clip0_28_235)">
                                 <path d="M10 5C10 4.46957 10.2107 3.96086 10.5858 3.58579C10.9609 3.21071 11.4696 3 12 3C12.5304 3 13.0391 3.21071 13.4142 3.58579C13.7893 3.96086 14 4.46957 14 5C15.1484 5.54303 16.1274 6.38833 16.8321 7.4453C17.5367 8.50227 17.9404 9.73107 18 11V14C18.0753 14.6217 18.2954 15.2171 18.6428 15.7381C18.9902 16.2592 19.4551 16.6914 20 17H4C4.54494 16.6914 5.00981 16.2592 5.35719 15.7381C5.70457 15.2171 5.92474 14.6217 6 14V11C6.05956 9.73107 6.4633 8.50227 7.16795 7.4453C7.8726 6.38833 8.85159 5.54303 10 5Z" stroke="#212121" strokeOpacity="0.75" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                 <path d="M9 17V18C9 18.7956 9.31607 19.5587 9.87868 20.1213C10.4413 20.6839 11.2044 21 12 21C12.7956 21 13.5587 20.6839 14.1213 20.1213C14.6839 19.5587 15 18.7956 15 18V17" stroke="#212121" strokeOpacity="0.75" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -58,21 +60,9 @@ const Header = () => {
                             </defs>
                         </svg>
                     </button>
-                    <button>
-                        <svg width="43" height="43" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="43" height="43" rx="12" fill="#EDF2F7" />
-                            <g clipPath="url(#clip0_28_251)">
-                                <path d="M23 11.9999C23.132 11.9999 23.263 11.9999 23.393 11.9999C22.1084 13.1937 21.2826 14.7998 21.0593 16.5392C20.836 18.2785 21.2293 20.0412 22.1708 21.5207C23.1122 23.0002 24.5424 24.103 26.2126 24.6374C27.8829 25.1718 29.6876 25.1041 31.313 24.4459C30.6878 25.9504 29.6658 27.257 28.3562 28.2262C27.0466 29.1954 25.4985 29.791 23.8769 29.9493C22.2554 30.1077 20.6213 29.8229 19.1489 29.1253C17.6765 28.4278 16.4211 27.3436 15.5166 25.9885C14.6121 24.6334 14.0924 23.0582 14.0129 21.4309C13.9334 19.8036 14.2972 18.1852 15.0654 16.7485C15.8336 15.3117 16.9774 14.1104 18.3748 13.2727C19.7722 12.435 21.3708 11.9923 23 11.9919V11.9999Z" stroke="#212121" strokeOpacity="0.75" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_28_251">
-                                    <rect width="24" height="24" fill="white" transform="translate(11 9)" />
-                                </clipPath>
-                            </defs>
-                        </svg>
-                    </button>
+
                     <button onClick={() => setShowModal(true)}>
-                        <svg width="43" height="43" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="43" height="43" viewBox="0 0 43 43" xmlns="http://www.w3.org/2000/svg">
                             <rect width="43" height="43" rx="12" fill="#EDF2F7" />
                             <g clipPath="url(#clip0_28_252)">
                                 <g clipPath="url(#clip1_28_252)">
@@ -92,6 +82,8 @@ const Header = () => {
                     </button>
                 </section>
             </nav>
+
+            {showNotification ? <Notification/> : <></>}
             <PostUpload showModal={showModal} setShowModal={setShowModal}/>
         </header>
     )
