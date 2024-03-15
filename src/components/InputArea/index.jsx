@@ -1,6 +1,6 @@
 import {API_BASE_URL} from '/src/constants.js';
 
-const InputArea = ({match_id, websocket, update_chat_messages}) => {
+const InputArea = ({match_id, websocket}) => {
 
 
     const sent_new_text_message = () => {

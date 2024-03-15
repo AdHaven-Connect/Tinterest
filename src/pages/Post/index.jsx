@@ -125,7 +125,7 @@ const Post = () => {
                                     <div className="flex items-center space-x-2">
                                         <img src={post.author.profile_picture} alt="User Avatar" className="w-10 h-10 rounded-full" />
                                         <div>
-                                            <p className="text-gray-800 font-semibold"><Link to="/profile">{post.author.name}</Link></p>
+                                            <p className="text-gray-800 font-semibold"><Link to={"/profile/" + post.author.id }>{post.author.name}</Link></p>
                                             <p className="text-gray-500 text-sm">Posted 2 hours ago</p>
                                         </div>
                                     </div>

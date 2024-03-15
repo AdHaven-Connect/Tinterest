@@ -7,9 +7,6 @@ import { useState, useEffect } from "react";
 
 const ChatArea = ({match_id, ws}) => {
 
-    const [chatProfileWithMessages, setChatProfileWithMessages] = useState(null);
-;
-
     const [chatMessages, setChatMessages] = useState([]);
 
     const load_chat_profile_and_messages = async () => {
@@ -23,7 +20,6 @@ const ChatArea = ({match_id, ws}) => {
 
         if(req.ok && req.status === 200) {
             const res = await req.json();
-            setChatProfileWithMessages(res);
             setChatMessages(res.messages.reverse());
         }
     }
@@ -33,34 +29,37 @@ const ChatArea = ({match_id, ws}) => {
         load_chat_profile_and_messages();
     }, []);
 
+    // useEffect (() => {
+    //     if (ws && ws != null) ws.onmessage = (event) => {
+    //       const temp_message = JSON.parse(event.data).data;
+    //       const new_message = {
+    //         self_sender : temp_message.sender == localStorage.getItem("profile_id").toString().replaceAll("-", "") ? true : false,
+    //         message : temp_message.message,
+    //         image: temp_message.image
+    //       };
+    //       console.log(new_message)
+    //       setChatMessages([...chatMessages, new_message]);
+    //       window.scrollTo(0, document.getElementById("msg_area").scrollHeight);
+    //       return;
+    //     }
+    // }, [ ws.onmessage ])
 
-
-
-
-    useEffect (() => {
-        if (ws && ws != null) ws.onmessage = (event) => {
-          const temp_message = JSON.parse(event.data).data;
-          const new_message = {
-            self_sender : temp_message.sender == localStorage.getItem("profile_id").toString().replaceAll("-", "") ? true : false,
-            message : temp_message.message,
-            image: temp_message.image
-          };
-          console.log(new_message)
-          setChatMessages([...chatMessages, new_message])
-          return;
-        }
-    }, [ ws.onmessage ])
-
-
-    const update_chat_messages =  () => {
-
-    }
+    if(ws && ws != null) ws.onmessage = (event) => {
+        const temp_message = JSON.parse(event.data).data;
+        const new_message = {
+          self_sender : temp_message.sender == localStorage.getItem("profile_id").toString().replaceAll("-", "") ? true : false,
+          message : temp_message.message,
+          image: temp_message.image
+        };
+        setChatMessages([...chatMessages, new_message]);
+        return;
+      }
 
     return (
         <div className="flex flex-col flex-auto h-full p-6">
             <div className="flex flex-col flex-auto flex-shrink-0 bg-opacity-[0.7] rounded-2xl bg-yellow-100 h-full p-4">   
                 <MessageArea messages={chatMessages}/>
-                <InputArea match_id={match_id} websocket={ws} update_chat_messages={update_chat_messages}/>
+                <InputArea match_id={match_id} websocket={ws}/>
             </div>
         </div>
     )

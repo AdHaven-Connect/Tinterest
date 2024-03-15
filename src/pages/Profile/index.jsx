@@ -31,6 +31,26 @@ const Profile = () => {
     }
 
 
+    const start_a_new_chat = async () => {
+        const req = await fetch(API_BASE_URL + "/chat/new/" + profile_id + "/", {
+            method : 'POST',
+            headers : {
+                "Authorization" : "Token " + localStorage.getItem("token"),
+                "Content-Type" : "application/json",
+            }
+        });
+
+        if(req.ok && req.status === 200){
+            const res = await req.json();
+            const match_id = res.chat_id;
+            window.location.href = "/chat";
+        }else{
+            alert("ERROR!!!");
+        }
+
+    }
+
+
     useEffect(() => {
         load_profile_data();
     }, [])
@@ -57,9 +77,8 @@ const Profile = () => {
                                     <ul
                                         className="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
 
-
                                         <li className="flex items-center py-3">
-                                            <button className="bg-blue-600 px-3 py-1 rounded-3xl w-full font-semibold text-white">Сообщение</button>
+                                            <button onClick={() => start_a_new_chat()} className="bg-blue-600 px-3 py-1 rounded-3xl w-full font-semibold text-white">Сообщение</button>
                                         </li>
                                         <li className="flex items-center py-3">
                                             <button className="bg-yellow-300 px-3 py-1 rounded-3xl w-full font-semibold text-dark">Следовать</button>
