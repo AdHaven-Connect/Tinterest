@@ -11,6 +11,7 @@ const Profile = () => {
     const {profile_id} = useParams();
 
     const [profileData, setProfileData] = useState(null);
+    const [bText, setBText] = useState("Следовать");
 
     const load_profile_data = async () => {
         const req = await fetch(API_BASE_URL + "/api/people/" + profile_id + "/", {
@@ -51,10 +52,35 @@ const Profile = () => {
     }
 
 
+    const follow_unfollow_person = async () => {
+        const req = await fetch(API_BASE_URL + "/api/follow/" + profile_id + "/", {
+            method : 'POST',
+            headers : {
+                "Authorization" : "Token " + localStorage.getItem("token"),
+                "Content-Type" : "application/json",
+            }
+        });
+
+        if(req.ok && req.status === 200){
+            const res = await req.json();
+            if(res.detail === "added") {
+                setBText("Отписаться");
+            }else{
+                setBText("Следовать");
+            }
+        }else{
+            alert("ERROR!!!");
+        }
+
+    }
+
+
+
+
+
     useEffect(() => {
         load_profile_data();
     }, [])
-
 
 
     return (
@@ -81,7 +107,7 @@ const Profile = () => {
                                             <button onClick={() => start_a_new_chat()} className="bg-blue-600 px-3 py-1 rounded-3xl w-full font-semibold text-white">Сообщение</button>
                                         </li>
                                         <li className="flex items-center py-3">
-                                            <button className="bg-yellow-300 px-3 py-1 rounded-3xl w-full font-semibold text-dark">Следовать</button>
+                                            <button onClick={() => follow_unfollow_person()} className="bg-yellow-300 px-3 py-1 rounded-3xl w-full font-semibold text-dark">{bText}</button>
                                         </li>
                                         <li className="flex items-center py-3">
                                             <span>Опыт</span>

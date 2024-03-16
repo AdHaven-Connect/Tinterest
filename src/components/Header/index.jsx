@@ -2,6 +2,9 @@ import { useState } from "react";
 import PostUpload from "@/components/PostUpload";
 import Notification from "@/components/Notification";
 
+import { Link } from "react-router-dom";
+
+
 
 const Header = () => {
 
@@ -14,29 +17,10 @@ const Header = () => {
 
             <nav className="flex items-center justify-between max-w-[1220px] min-h-[50px]">
                 <section className="flex gap-6 w-60 items-center">
-                    <a href="" className="">
-                        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g filter="url(#filter0_d_28_208)">
-                                <path d="M28 44C39.0457 44 48 35.0457 48 24C48 12.9543 39.0457 4 28 4C16.9543 4 8 12.9543 8 24C8 35.0457 16.9543 44 28 44Z" fill="#FF3A62" />
-                            </g>
-                            <path fillRule="evenodd" clipRule="evenodd" d="M30.5186 26.8963H28.9211L30.9781 29.3281H29.8093L26.752 25.9313H27.5434H29.5978C32.1823 25.9313 34.2762 23.9073 34.2762 21.4259C34.2762 20.3573 33.8868 19.366 33.2376 18.5952C32.4551 17.4312 33.3587 16.5779 34.1608 16.5779C33.9574 15.6691 32.8464 15.6011 32.8464 15.6011C32.7226 15.2431 32.4081 14.7144 31.7978 14.7144H30.2018C30.1807 14.7144 30.1602 14.7175 30.1401 14.7205L30.1401 14.7205C30.1231 14.7231 30.1064 14.7257 30.0898 14.7262C29.3049 14.8102 28.5439 15.3831 29.3042 16.5116L29.3045 16.512C29.3238 16.5388 30.3915 18.0206 30.3915 19.5439C30.3915 22.1418 28.1994 24.4237 25.4935 24.4237H20.5112H19.5503H14.4286C14.4286 25.268 15.0932 25.9313 15.9132 25.9313H19.1454H25.2097L28.077 29.3281H19.1454V31.8378H37.8085V29.3281H32.7115L30.5186 26.8963ZM28.2965 22.4761C29.0808 21.6869 29.5306 20.6207 29.5306 19.5546C29.5306 18.269 28.5826 16.9373 28.5728 16.924L28.5671 16.9143L28.5606 16.9037C28.3496 16.5923 28.2302 16.3178 28.1733 16.0662L21.0357 23.7267H25.3616C26.4572 23.7267 27.4996 23.2781 28.2965 22.4761ZM15.8444 31.8378H18.2041V29.3032H15.8444V31.8378ZM38.8235 31.8572V29.3232L40.8571 30.5355L38.8235 31.8572ZM31.0937 16.3816C31.3272 16.3816 31.5162 16.2002 31.5162 15.9761C31.5162 15.7521 31.3272 15.5706 31.0937 15.5706C30.8603 15.5706 30.6711 15.7521 30.6711 15.9761C30.6711 16.2002 30.8603 16.3816 31.0937 16.3816Z" fill="white" />
-                            <defs>
-                                <filter id="filter0_d_28_208" x="0" y="0" width="56" height="56" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-                                    <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
-                                    <feOffset dy="4" />
-                                    <feGaussianBlur stdDeviation="4" />
-                                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.08 0" />
-                                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_28_208" />
-                                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_28_208" result="shape" />
-                                </filter>
-                            </defs>
-                        </svg>
-                    </a>
-                    <section className="flex flex-col">
-                        <span className="text-sm font-inter font-bold">Иванов</span>
-                        <span className="text-sm font-inter text-grey">Иван Иванович</span>
-                    </section>
+                    <Link to="/" className="">
+                        <img width="56" height="56" src="/src/assets/images/tinkoff.svg"/>
+                    </Link>
+                    <Link to="/" className="font-semibold text-xl">Tinterest</Link>
                 </section>
                 <section className="cursor-pointer relative flex items-center text-grey focus-within:text-black">
                     <svg xmlns="http://www.w3.org/2000/svg" className="mr-8 right-0 absolute icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
