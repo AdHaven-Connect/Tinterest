@@ -33,10 +33,10 @@ const People = () => {
             <Header />
             <Aside />
             <main className="container mt-6">
-                <div className="grid grid-cols-12 max-w-screen-xl mx-auto mt-6 ml-10">
+                <div className="grid grid-cols-12 max-w-screen-xl mx-auto mt-6 ml-12">
                     <div className="col-span-6 max-w-xl place-self-center flex flex-col space-y-5 self-center justify-center">
                             {people.map((person, index) => (
-                                <PeopleCard key={index} topic={person}/>
+                                <PeopleCard key={index} person={person}/>
                             ))}
                     </div>
                 </div>
