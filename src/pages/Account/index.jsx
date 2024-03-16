@@ -2,7 +2,6 @@ import Header from "@/components/Header";
 import Aside from "@/components/Aside";
 import { useState, useEffect } from "react";
 import { API_BASE_URL } from "/src/constants.js";
-import { Link } from "react-router-dom";
 
 const Account = () => {
 
@@ -100,7 +99,6 @@ const Account = () => {
     }
 
 
-
     const update_profile_account = async () => {
 
         setIsLoading(true);
@@ -110,6 +108,10 @@ const Account = () => {
         const age = document.getElementById("age").value;
         const birthday = document.getElementById("birthday").value;
         const yoe = document.getElementById("yoe").value;
+
+        const title_id = document.getElementById("title_id").value;
+        const department_id = document.getElementById("department_id").value;
+
 
         const req = await fetch(API_BASE_URL + "/account/profile/", {
             method: 'POST',
@@ -129,13 +131,18 @@ const Account = () => {
 
         if (req.ok && req.status === 200) {
             load_profile_data();
+
+            try{
+                update_profile_organization(title_id, department_id);
+            }catch{
+
+            }
             alert("Успешно обновлено");
         } else {
             alert("ERROR!!");
         }
         setIsLoading(false);
     }
-
 
     const update_profile_interest = async () => {
 
@@ -225,11 +232,8 @@ const Account = () => {
         setIsLoading(false);
     }
 
-    const update_profile_organization = async () => {
+    const update_profile_organization = async (title_id, department_id) => {
         setIsLoading(true)
-        const title_id = document.getElementById("title_id").value;
-        const department_id = document.getElementById("department_id").value;
-
         const req = await fetch(API_BASE_URL + "/account/organization/", {
             method: 'POST',
             headers: {
@@ -484,6 +488,7 @@ const Account = () => {
 
             </main>
 
+
             {showProfileModal &&
                 <dialog id="dialog_for_message" open
                     className="space-y-4 flex top-8 flex-col self-center justify-between p-5 rounded-2xl border w-[500px] border-yellow-300"
@@ -509,6 +514,23 @@ const Account = () => {
 
                     <input id="yoe" name="yoe" type="number" placeholder="Опыт"
                         className="bg-primary outline bg-opacity-[.04] p-2 h-[40px] outline-yellow-300 outline-1" />
+
+                    <select id="title_id" name="title_id"
+                        className="bg-primary outline bg-opacity-[.04] p-2 h-[40px] outline-yellow-300 outline-1">
+                            <option>Выберите Успешно позиционировать</option>
+                            {
+                                availableTitles.map((title, index) => <option value={title.id} key={index}>{title.position_title}</option>)
+                            }
+                    </select>
+
+
+                    <select id="department_id" name="department_id"
+                        className="bg-primary outline bg-opacity-[.04] p-2 h-[40px] outline-yellow-300 outline-1">
+                            <option>Выберите Успешно позиционировать</option>
+                            {
+                                availableDepartments.map((dept, index) => <option value={dept.id} key={index}>{dept.department_name}</option>)
+                            }
+                    </select>
                     
                     
                     <button onClick={() => update_profile_account()} type="button"
